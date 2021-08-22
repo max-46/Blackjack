@@ -40,10 +40,10 @@ public class Player {
         if (numOfAces == 0) return total;
         return total <= 11 ? total + 10 : total;
     }
-    
+
     @Override
     public String toString() {
-        return "Player{" + "cards=" + cards + '}';
+        return "Player{" + "name=" + name + ", cards=" + cards + '}';
     }
 
 }
