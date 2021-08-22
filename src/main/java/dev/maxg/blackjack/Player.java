@@ -43,7 +43,8 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", cards=" + cards + '}';
+        return "Player{" + "name=" + name + ", cards=" + cards + ", total=" 
+                + getTotal() + '}';
     }
 
 }

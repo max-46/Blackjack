@@ -27,9 +27,7 @@ public class BlackjackGame {
         bg.cards.forEach(c -> System.out.println(c));
         System.out.println(bg.cards.size());
         System.out.println(dealer);
-        System.out.println(dealer.getTotal());
         System.out.println(player);
-        System.out.println(player.getTotal());
     }
 
     public void dealCards(Player[] players, Card[] cards) {
