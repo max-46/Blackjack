@@ -58,7 +58,7 @@ public class BlackjackGameTest {
         Player[] players = null;
         Card[] cards = null;
         BlackjackGame instance = null;
-        instance.dealCards(players, cards);
+        instance.dealNewCards(players, cards);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -72,7 +72,7 @@ public class BlackjackGameTest {
         Player player = null;
         Card card = null;
         BlackjackGame instance = null;
-        instance.dealCard(player, card);
+        instance.dealAnotherCard(player, card);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

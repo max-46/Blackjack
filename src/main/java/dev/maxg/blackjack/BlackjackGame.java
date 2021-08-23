@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class BlackjackGame {
 
     private final Deque<Card> cards;
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public BlackjackGame(int numOfDecks) {
         this.cards = Card.getCardDecks(numOfDecks);
@@ -30,7 +30,7 @@ public class BlackjackGame {
         bg.hitOrStay(player);
         System.out.println("Winner is: " + bg.getWinner(new Player[]{dealer, player}));
     }
-    
+
     public void hitOrStay(Player player) {
         while (true) {
             System.out.println(player);
@@ -39,12 +39,12 @@ public class BlackjackGame {
             if (response.equalsIgnoreCase("N")) {
                 break;
             }
-            dealCard(player, cards.pop());
+            dealAnotherCard(player, cards.pop());
         }
-    
+
     }
 
-    public void dealCards(Player[] players, Card[] cards) {
+    public void dealNewCards(Player[] players, Card[] cards) {
         if (cards.length != players.length * 2) {
             throw new AssertionError("There should be twice as many cards as players");
         }
@@ -53,8 +53,8 @@ public class BlackjackGame {
             player.giveNewCards(new Card[]{cards[i++], cards[i++]});
         }
     }
-    
-    public Player getWinner(Player[] players){
+
+    public Player getWinner(Player[] players) {
         Player winner = null;
         for (Player player : players) {
             int pTotal = player.getTotal();
@@ -65,7 +65,7 @@ public class BlackjackGame {
         return winner;
     }
 
-    public void dealCard(Player player, Card card) {
+    public void dealAnotherCard(Player player, Card card) {
         player.giveAnotherCard(card);
     }
 
