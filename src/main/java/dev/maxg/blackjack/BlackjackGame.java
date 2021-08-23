@@ -5,10 +5,7 @@
  */
 package dev.maxg.blackjack;
 
-import java.util.Arrays;
 import java.util.Deque;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
