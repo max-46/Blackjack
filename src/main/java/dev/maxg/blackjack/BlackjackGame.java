@@ -15,42 +15,40 @@ import java.util.Scanner;
 public class BlackjackGame {
 
     private final Deque<Card> cards;
-    private final Scanner scanner;
 
     public BlackjackGame(int numOfDecks) {
         this.cards = Card.getCardDecks(numOfDecks);
-        scanner = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
         BlackjackGame bg = new BlackjackGame(3);
         Player dealer = new Player("Dealer", new Card[]{bg.cards.pop(), bg.cards.pop()});
         Player player = new Player("Player", new Card[]{bg.cards.pop(), bg.cards.pop()});
-        bg.hitOrStay(dealer, player);
-        bg.autoPlay(dealer, player);
-        System.out.println("The winner is " + bg.getWinner(new Player[]{dealer, player}));
-    }
-
-    public void hitOrStay(Player dealer, Player player) {
         System.out.println(dealer);
-        while (true) {
+        while (wantsAnotherCard(player)) {
+            bg.dealAnotherCard(player, bg.cards.pop());
             if (player.getTotal() > 21) {
                 System.out.println("You have gone bust!");
                 break;
             }
-            System.out.println(player);
-            System.out.println("Would you like another card? (Y/n)");
-            String response = scanner.nextLine();
-            if (response.equalsIgnoreCase("N")) {
-                break;
-            }
-            dealAnotherCard(player, cards.pop());
         }
+        bg.autoPlay(dealer, player);
+        System.out.println("The winner is " + bg.getWinner(new Player[]{dealer, player}));
+    }
+
+    public static boolean wantsAnotherCard(Player player) {
+        System.out.println(player);
+        System.out.println("Would you like another card? (Y/n)");
+        Scanner scanner = new Scanner(System.in);
+        String response = scanner.nextLine();
+        return !response.equalsIgnoreCase("N");
     }
 
     public void autoPlay(Player dealer, Player player) {
+        int pTotal = player.getTotal();
+        if (pTotal > 21) return;
         System.out.println("Dealer playing...");
-        if (player.getTotal() <= 21 && dealer.getTotal() < player.getTotal()) {
+        if (pTotal <= 21 && dealer.getTotal() < pTotal) {
             dealAnotherCard(dealer, cards.pop());
         }
         System.out.println(dealer);
