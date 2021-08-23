@@ -26,12 +26,13 @@ public class BlackjackGame {
         BlackjackGame bg = new BlackjackGame(3);
         Player dealer = new Player("Dealer", new Card[]{bg.cards.pop(), bg.cards.pop()});
         Player player = new Player("Player", new Card[]{bg.cards.pop(), bg.cards.pop()});
-        bg.hitOrStay(dealer);
-        bg.hitOrStay(player);
-        System.out.println("Winner is: " + bg.getWinner(new Player[]{dealer, player}));
+        bg.hitOrStay(dealer, player);
+        bg.autoPlay(dealer, player);
+        System.out.println("The winner is " + bg.getWinner(new Player[]{dealer, player}));
     }
 
-    public void hitOrStay(Player player) {
+    public void hitOrStay(Player dealer, Player player) {
+        System.out.println(dealer);
         while (true) {
             System.out.println(player);
             System.out.println("Would you like another card? (Y/n)");
@@ -41,7 +42,12 @@ public class BlackjackGame {
             }
             dealAnotherCard(player, cards.pop());
         }
+    }
 
+    public void autoPlay(Player dealer, Player player) {
+        if (player.getTotal() <= 21 && dealer.getTotal() < player.getTotal()) {
+            dealAnotherCard(dealer, cards.pop());
+        }
     }
 
     public void dealNewCards(Player[] players, Card[] cards) {
