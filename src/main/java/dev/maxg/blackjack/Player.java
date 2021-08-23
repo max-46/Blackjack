@@ -40,7 +40,7 @@ public class Player {
                 .filter(c -> c.getCardType() == CardType.ACE)
                 .mapToInt(c -> 1)
                 .sum();
-        int total = cards.stream().mapToInt(c -> c.getValue()).sum();
+        int total = cards.stream().mapToInt(Card::getValue).sum();
         if (numOfAces == 0) return total;
         return total <= 11 ? total + 10 : total;
     }

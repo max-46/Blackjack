@@ -61,7 +61,7 @@ public class PlayerTest {
         Player player = new Player("Player1", 
                 new Card[]{new Card(CardType.THREE), new Card(CardType.EIGHT)});
         player.giveAnotherCard(card);
-        assertTrue(player.getCards().length == 3);
+        assertEquals(3, player.getCards().length);
     }
 
     /**
