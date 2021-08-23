@@ -34,6 +34,10 @@ public class BlackjackGame {
     public void hitOrStay(Player dealer, Player player) {
         System.out.println(dealer);
         while (true) {
+            if (player.getTotal() > 21) {
+                System.out.println("You have gone bust!");
+                break;
+            }
             System.out.println(player);
             System.out.println("Would you like another card? (Y/n)");
             String response = scanner.nextLine();
