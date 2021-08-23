@@ -6,6 +6,7 @@
 package dev.maxg.blackjack;
 
 import java.util.Deque;
+import java.util.Scanner;
 
 /**
  *
@@ -14,19 +15,33 @@ import java.util.Deque;
 public class BlackjackGame {
 
     private final Deque<Card> cards;
+    private Scanner scanner;
 
     public BlackjackGame(int numOfDecks) {
         this.cards = Card.getCardDecks(numOfDecks);
+        scanner = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
         BlackjackGame bg = new BlackjackGame(3);
         Player dealer = new Player("Dealer", new Card[]{bg.cards.pop(), bg.cards.pop()});
         Player player = new Player("Player", new Card[]{bg.cards.pop(), bg.cards.pop()});
-        bg.dealCard(player, bg.cards.pop());
-        System.out.println(dealer);
-        System.out.println(player);
+        bg.hitOrStay(dealer);
+        bg.hitOrStay(player);
         System.out.println("Winner is: " + bg.getWinner(new Player[]{dealer, player}));
+    }
+    
+    public void hitOrStay(Player player) {
+        while (true) {
+            System.out.println(player);
+            System.out.println("Would you like another card? (Y/n)");
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("N")) {
+                break;
+            }
+            dealCard(player, cards.pop());
+        }
+    
     }
 
     public void dealCards(Player[] players, Card[] cards) {
