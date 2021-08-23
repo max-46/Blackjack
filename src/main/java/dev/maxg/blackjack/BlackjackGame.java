@@ -45,9 +45,11 @@ public class BlackjackGame {
     }
 
     public void autoPlay(Player dealer, Player player) {
+        System.out.println("Dealer playing...");
         if (player.getTotal() <= 21 && dealer.getTotal() < player.getTotal()) {
             dealAnotherCard(dealer, cards.pop());
         }
+        System.out.println(dealer);
     }
 
     public void dealNewCards(Player[] players, Card[] cards) {
