@@ -5,7 +5,10 @@
  */
 package dev.maxg.blackjack;
 
+import java.util.Arrays;
 import java.util.Deque;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -23,11 +26,10 @@ public class BlackjackGame {
         BlackjackGame bg = new BlackjackGame(3);
         Player dealer = new Player("Dealer", new Card[]{bg.cards.pop(), bg.cards.pop()});
         Player player = new Player("Player", new Card[]{bg.cards.pop(), bg.cards.pop()});
-        player.giveAnotherCard(bg.cards.pop());
-        bg.cards.forEach(c -> System.out.println(c));
-        System.out.println(bg.cards.size());
+        bg.dealCard(player, bg.cards.pop());
         System.out.println(dealer);
         System.out.println(player);
+        System.out.println("Winner is: " + bg.getWinner(new Player[]{dealer, player}));
     }
 
     public void dealCards(Player[] players, Card[] cards) {
@@ -38,6 +40,17 @@ public class BlackjackGame {
         for (Player player : players) {
             player.giveNewCards(new Card[]{cards[i++], cards[i++]});
         }
+    }
+    
+    public Player getWinner(Player[] players){
+        Player winner = null;
+        for (Player player : players) {
+            int pTotal = player.getTotal();
+            if (pTotal <= 21 && (winner == null || pTotal > winner.getTotal())) {
+                winner = player;
+            }
+        }
+        return winner;
     }
 
     public void dealCard(Player player, Card card) {
