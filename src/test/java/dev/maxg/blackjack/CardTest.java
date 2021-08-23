@@ -44,12 +44,10 @@ public class CardTest {
     @Test
     public void testGetValue() {
         System.out.println("getValue");
-        Card instance = null;
-        int expResult = 0;
+        Card instance = new Card(CardType.ACE);
+        int expResult = 1;
         int result = instance.getValue();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, "The card's value should be 1.");
     }
 
     /**
@@ -58,12 +56,10 @@ public class CardTest {
     @Test
     public void testGetCardType() {
         System.out.println("getCardType");
-        Card instance = null;
-        CardType expResult = null;
+        Card instance = new Card(CardType.KING);
+        CardType expResult = CardType.KING;
         CardType result = instance.getCardType();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, "The card's type should be KING.");
     }
 
     /**
@@ -72,12 +68,10 @@ public class CardTest {
     @Test
     public void testGetCardDecks() {
         System.out.println("getCardDecks");
-        int numOfDecks = 0;
-        Deque<Card> expResult = null;
-        Deque<Card> result = Card.getCardDecks(numOfDecks);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int numOfDecks = 3;
+        Deque<Card> cards = Card.getCardDecks(numOfDecks);
+        assertEquals(156, cards.size(), "The should be 156 cards");
+        assertTrue(cards instanceof Deque);
     }
 
     /**
@@ -86,12 +80,10 @@ public class CardTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Card instance = null;
-        String expResult = "";
+        Card instance = new Card(CardType.QUEEN);
+        String expResult = "Card{QUEEN}";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
