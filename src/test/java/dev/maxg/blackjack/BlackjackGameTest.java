@@ -5,6 +5,7 @@
  */
 package dev.maxg.blackjack;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -65,8 +66,8 @@ public class BlackjackGameTest {
         Card[] pCards = new Card[]{new Card(CardType.KING), card2};
         Player player = new Player("Dealer", pCards);
         BlackjackGame bg = new BlackjackGame(2);
-        bg.dealNewCards(new Player[]{dealer, player}, new Card[]{new Card(CardType.TWO), new Card(CardType.SIX)});
-        assertTrue(true);
+        bg.dealNewCards(new Player[]{dealer, player}, new Card[]{new Card(CardType.TWO), new Card(CardType.SIX), new Card(CardType.TWO), new Card(CardType.SIX)});
+        assertFalse(Arrays.equals(pCards, player.getCards()));
     }
 
     /**
@@ -82,7 +83,7 @@ public class BlackjackGameTest {
         Player[] players = new Player[]{dealer, player};
         BlackjackGame bg = new BlackjackGame(3);
         Player winner = bg.getWinner(players);
-        assertTrue(winner instanceof Player);
+        assertTrue(winner.getTotal() <= 21);
     }
 
     /**
@@ -91,11 +92,12 @@ public class BlackjackGameTest {
     @Test
     public void testDealAnotherCard() {
         System.out.println("dealAnotherCard");
-        Player player = null;
-        Card card = null;
-        BlackjackGame instance = null;
-        instance.dealAnotherCard(player, card);
-        assertTrue(true);
+        Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
+        Player player = new Player("Dealer", pCards);
+        Card card = new Card(CardType.FOUR);
+        BlackjackGame bg = new BlackjackGame(3);
+        bg.dealAnotherCard(player, card);
+        assertTrue(player.getCards().length == 3);
     }
     
 }
