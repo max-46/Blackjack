@@ -48,6 +48,10 @@ public class CardTest {
         int expResult = 1;
         int result = instance.getValue();
         assertEquals(expResult, result, "The card's value should be 1.");
+        instance = new Card(CardType.JACK);
+        expResult = 10;
+        result = instance.getValue();
+        assertEquals(expResult, result, "The card's value should be 10.");
     }
 
     /**

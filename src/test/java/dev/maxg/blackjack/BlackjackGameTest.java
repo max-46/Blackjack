@@ -48,8 +48,12 @@ public class BlackjackGameTest {
         Player dealer = new Player("Dealer", dCards);
         Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
         Player player = new Player("Dealer", pCards);
-        BlackjackGame instance = new BlackjackGame(3);
-        instance.autoPlay(dealer, player);
+        BlackjackGame bg = new BlackjackGame(3);
+        bg.autoPlay(dealer, player);
+        assertTrue(dealer.getTotal() > player.getTotal());
+        bg.dealNewCards(new Player[]{dealer, player}, new Card[] {
+            new Card(CardType.TWO), new Card(CardType.QUEEN),
+            new Card(CardType.FOUR), new Card(CardType.FIVE)});
         assertTrue(dealer.getTotal() > player.getTotal());
     }
 
