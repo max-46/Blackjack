@@ -59,11 +59,9 @@ public class BlackjackGameTest {
     @Test
     public void testDealNewCards() {
         System.out.println("dealNewCards");
-        Card card1 = new Card(CardType.ACE);
-        Card card2 = new Card(CardType.THREE);
-        Card[] dCards = new Card[]{card1, new Card(CardType.JACK)};
+        Card[] dCards = new Card[]{new Card(CardType.ACE), new Card(CardType.JACK)};
         Player dealer = new Player("Dealer", dCards);
-        Card[] pCards = new Card[]{new Card(CardType.KING), card2};
+        Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
         Player player = new Player("Dealer", pCards);
         BlackjackGame bg = new BlackjackGame(2);
         bg.dealNewCards(new Player[]{dealer, player}, new Card[]{new Card(CardType.TWO), new Card(CardType.SIX), new Card(CardType.TWO), new Card(CardType.SIX)});
