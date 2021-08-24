@@ -52,46 +52,18 @@
                     <version>0.8.7</version>
                     <executions>
                         <execution>
-                            <id>default-prepare-agent</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
-                            <configuration>
-                                <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
-                            </configuration>
                         </execution>
+                        <!-- attached to Maven test phase -->
                         <execution>
-                            <id>default-report</id>
+                            <id>report</id>
+                            <phase>test</phase>
                             <goals>
                                 <goal>report</goal>
                             </goals>
-                            <configuration>
-                                <dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
-                                <outputEncoding>UTF-8</outputEncoding>
-                                <outputDirectory>${project.build.directory}</outputDirectory>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>default-check</id>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                            <configuration>
-                                <dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
-                                <rules>
-                                    <rule>
-                                        <element>BUNDLE</element>
-                                        <limits>
-                                            <limit>
-                                                <counter>INSTRUCTION</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>0.80</minimum>
-                                            </limit>
-                                        </limits>
-                                    </rule>
-                                </rules>
-                            </configuration>
-                        </execution>
+                        </execution>                      
                     </executions>
                 </plugin>
                 <plugin>
