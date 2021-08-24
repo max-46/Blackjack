@@ -7,7 +7,6 @@ package dev.maxg.blackjack;
 
 import java.util.Deque;
 import java.util.Scanner;
-import org.xml.sax.helpers.ParserFactory;
 
 /**
  *
