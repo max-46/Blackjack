@@ -7,6 +7,7 @@ package dev.maxg.blackjack;
 
 import java.util.Deque;
 import java.util.Scanner;
+import org.xml.sax.helpers.ParserFactory;
 
 /**
  *
@@ -22,8 +23,8 @@ public class BlackjackGame {
 
     public static void main(String[] args) {
         BlackjackGame bg = new BlackjackGame(3);
-        Player dealer = new Player("Dealer", new Card[]{bg.cards.pop(), bg.cards.pop()});
-        Player player = new Player("Player", new Card[]{bg.cards.pop(), bg.cards.pop()});
+        Player dealer = bg.makePlayer("Dealer");
+        Player player = bg.makePlayer("Player");
         System.out.println(dealer);
         String response;
         Scanner scanner = new Scanner(System.in);
@@ -39,6 +40,9 @@ public class BlackjackGame {
         System.out.println("The winner is " + bg.getWinner(new Player[]{dealer, player}));
     }
 
+    public Player makePlayer(String name) {
+        return new Player("name", new Card[]{cards.pop(), cards.pop()});
+    }
 
     public void autoPlay(Player dealer, Player player) {
         int pTotal = player.getTotal();
