@@ -25,7 +25,7 @@ public class BlackjackGame {
         Player dealer = new Player("Dealer", new Card[]{bg.cards.pop(), bg.cards.pop()});
         Player player = new Player("Player", new Card[]{bg.cards.pop(), bg.cards.pop()});
         System.out.println(dealer);
-        String response = "";
+        String response;
         Scanner scanner = new Scanner(System.in);
         while (player.getTotal() <= 21) {
             System.out.println(player);
