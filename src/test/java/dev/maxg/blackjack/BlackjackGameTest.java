@@ -88,21 +88,6 @@ public class BlackjackGameTest {
         assertTrue(winner.getTotal() <= 21);
     }
     
-    
-    /**
-     * Test of playerHasGoneBust method, of class BlackjackGame.
-     */
-    @Test
-    public void testPlayerHasGoneBust() {
-        System.out.println("playerHasGoneBust");
-        BlackjackGame bg = new BlackjackGame(1);
-        assertTrue(!bg.playerHasGoneBust());
-        bg.getPlayer().giveAnotherCard(new Card(CardType.KING));
-        bg.getPlayer().giveAnotherCard(new Card(CardType.KING));
-        assertTrue(bg.playerHasGoneBust());
-        
-    }
-    
     /**
      * Test of testMain method, of class BlackjackGame.
      */

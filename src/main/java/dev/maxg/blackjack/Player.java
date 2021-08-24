@@ -48,6 +48,10 @@ public class Player {
         if (numOfAces == 0) return total;
         return total <= 11 ? total + 10 : total;
     }
+    
+    public boolean playerHasGoneBust() {
+        return getTotal() > 21;
+    }
 
     @Override
     public String toString() {

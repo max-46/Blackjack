@@ -27,9 +27,8 @@ public class BlackjackGame {
     public static void main(String[] args) {
         BlackjackGame bg = new BlackjackGame(3);
         System.out.println(bg.getDealer());
-        if (bg.playerHasGoneBust()) System.out.println("You have gone bust!");
-        String response;
         Scanner scanner = new Scanner(System.in);
+        String response;
         Player p = bg.getPlayer();
         while (p.getTotal() <= 21) {
             System.out.println(p);
@@ -40,6 +39,7 @@ public class BlackjackGame {
             }
             p.giveAnotherCard(bg.cards.pop());
         }
+        if (p.playerHasGoneBust()) System.out.println("You have gone bust!");
         bg.dealerPlay();
         System.out.println("The winner is " + bg.getWinner());
     }
@@ -51,15 +51,11 @@ public class BlackjackGame {
     public Player getPlayer() {
         return player;
     }
-    
-    public boolean playerHasGoneBust() {
-        return player.getTotal() > 21;
-    }
 
     public void dealerPlay() {
         System.out.println("Dealer playing...");
-        int dTotal;
-        while ((dTotal = dealer.getTotal()) < 21 || dTotal < player.getTotal()) {
+        System.out.println(player.getTotal());
+        while (dealer.getTotal() < player.getTotal() && dealer.getTotal() < 21) {
             dealer.giveAnotherCard(cards.pop());
         }
         System.out.println(dealer);

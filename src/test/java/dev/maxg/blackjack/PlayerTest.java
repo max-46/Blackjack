@@ -76,6 +76,20 @@ public class PlayerTest {
         int result = player.getTotal();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * Test of playerHasGoneBust method, of class Player.
+     */
+    @Test
+    public void testPlayerHasGoneBust() {
+        System.out.println("playerHasGoneBust");
+        Player p = new BlackjackGame(1).getPlayer();
+        assertTrue(!p.playerHasGoneBust());
+        for (int i = 0; i < 3; i++) {
+            p.giveAnotherCard(new Card(CardType.KING));
+        }
+        assertTrue(p.playerHasGoneBust());
+    }
 
     /**
      * Test of toString method, of class Player.
