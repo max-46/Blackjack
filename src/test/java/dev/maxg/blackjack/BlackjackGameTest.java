@@ -65,6 +65,14 @@ public class BlackjackGameTest {
             new Card(CardType.THREE), new Card(CardType.SIX),
             new Card(CardType.NINE), new Card(CardType.QUEEN)});
         assertFalse(Arrays.equals(cards, bg.getPlayer().getCards()));
+
+        assertThrows(AssertionError.class, () -> {
+        
+            bg.dealNewCards(new Card[]{
+                new Card(CardType.THREE), new Card(CardType.SIX),
+                new Card(CardType.NINE)});
+        
+        });
     }
 
     /**
