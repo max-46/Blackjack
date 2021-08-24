@@ -74,16 +74,16 @@ public class CardTest {
         assertTrue(cards instanceof Deque);
     }
 
-    /**
-     * Test of toString method, of class Card.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Card instance = new Card(CardType.QUEEN);
-        String expResult = "Card{QUEEN}";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-    }
+//    /**
+//     * Test of toString method, of class Card.
+//     */
+//    @Test
+//    public void testToString() {
+//        System.out.println("toString");
+//        Card instance = new Card(CardType.QUEEN);
+//        String expResult = "Card{QUEEN}";
+//        String result = instance.toString();
+//        assertEquals(expResult, result);
+//    }
     
 }

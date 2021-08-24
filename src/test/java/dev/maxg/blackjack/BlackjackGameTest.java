@@ -75,12 +75,14 @@ public class BlackjackGameTest {
     @Test
     public void testGetWinner() {
         System.out.println("getWinner");
-        Player[] players = null;
-        BlackjackGame instance = null;
-        Player expResult = null;
-        Player result = instance.getWinner(players);
-//        assertEquals(expResult, result);
-        assertTrue(true);
+        Card[] dCards = new Card[]{new Card(CardType.ACE), new Card(CardType.JACK)};
+        Player dealer = new Player("Dealer", dCards);
+        Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
+        Player player = new Player("Dealer", pCards);
+        Player[] players = new Player[]{dealer, player};
+        BlackjackGame bg = new BlackjackGame(3);
+        Player winner = bg.getWinner(players);
+        assertTrue(winner instanceof Player);
     }
 
     /**
