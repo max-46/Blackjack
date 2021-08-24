@@ -95,7 +95,7 @@ public class BlackjackGameTest {
         Card card = new Card(CardType.FOUR);
         BlackjackGame bg = new BlackjackGame(3);
         bg.dealAnotherCard(player, card);
-        assertTrue(player.getCards().length == 3);
+        assertEquals(3, player.getCards().length);
     }
     
 }
