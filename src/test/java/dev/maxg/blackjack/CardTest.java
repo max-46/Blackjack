@@ -57,9 +57,14 @@ public class CardTest {
     public void testGetCardType() {
         System.out.println("getCardType");
         Card instance = new Card(CardType.KING);
-        CardType expResult = CardType.KING;
         CardType result = instance.getCardType();
-        assertEquals(expResult, result, "The card's type should be KING.");
+        assertEquals(CardType.KING, result, "The card's type should be KING.");
+        instance = new Card(CardType.SEVEN);
+        result = instance.getCardType();
+        assertEquals(CardType.SEVEN, result, "The card's type should be SEVEN.");
+        instance = new Card(CardType.NINE);
+        result = instance.getCardType();
+        assertEquals(CardType.NINE, result, "The card's type should be SEVEN.");
     }
 
     /**
