@@ -90,6 +90,15 @@ public class PlayerTest {
         assertEquals(expResult, result);
     }
     
-    
+        /**
+     * Test of getName method, of class Player.
+     */
+    @Test
+    public void testGetName() {
+        System.out.println("getName");
+        Player player = new Player("Player X", 
+                new Card[]{new Card(CardType.THREE), new Card(CardType.KING)});
+        assertEquals("Player X", player.getName());
+    }
     
 }

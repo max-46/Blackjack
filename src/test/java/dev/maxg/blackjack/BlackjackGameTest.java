@@ -102,7 +102,7 @@ public class BlackjackGameTest {
      * Test of makePlayer method, of class BlackjackGame.
      */
     @Test
-    public void testmakePlayer() {
+    public void testMakePlayer() {
         System.out.println("makePlayer");
         BlackjackGame bg = new BlackjackGame(1);
         Player player = bg.makePlayer("Player 1");
