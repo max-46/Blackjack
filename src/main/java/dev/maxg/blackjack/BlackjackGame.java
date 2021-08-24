@@ -20,8 +20,6 @@ public class BlackjackGame {
 
     public BlackjackGame(int numOfDecks) {
         cards = Card.getCardDecks(numOfDecks);
-        System.out.println(cards);
-        System.out.println(cards.pop());
         dealer = new Player("Dealer", new Card[]{cards.pop(), cards.pop()});
         player = new Player("Player", new Card[]{cards.pop(), cards.pop()});
     }
