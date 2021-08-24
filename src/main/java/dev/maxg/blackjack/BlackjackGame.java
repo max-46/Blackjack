@@ -25,28 +25,26 @@ public class BlackjackGame {
         Player dealer = new Player("Dealer", new Card[]{bg.cards.pop(), bg.cards.pop()});
         Player player = new Player("Player", new Card[]{bg.cards.pop(), bg.cards.pop()});
         System.out.println(dealer);
-        while (wantsAnotherCard(player)) {
+        String response = "";
+        Scanner scanner = new Scanner(System.in);
+        while (player.getTotal() <= 21) {
+            System.out.println(player);
+            System.out.println("Would you like another card? (Y/n)");
+            response = scanner.nextLine();
+            if (response.equalsIgnoreCase("N")) break;
             bg.dealAnotherCard(player, bg.cards.pop());
-            if (player.getTotal() > 21) {
-                System.out.println("You have gone bust!");
-                break;
-            }
         }
+        if (player.getTotal() > 21) System.out.println("You have gone bust!");
         bg.autoPlay(dealer, player);
         System.out.println("The winner is " + bg.getWinner(new Player[]{dealer, player}));
     }
 
-    public static boolean wantsAnotherCard(Player player) {
-        System.out.println(player);
-        System.out.println("Would you like another card? (Y/n)");
-        Scanner scanner = new Scanner(System.in);
-        String response = scanner.nextLine();
-        return !response.equalsIgnoreCase("N");
-    }
 
     public void autoPlay(Player dealer, Player player) {
         int pTotal = player.getTotal();
-        if (pTotal > 21) return;
+        if (pTotal > 21) {
+            return;
+        }
         System.out.println("Dealer playing...");
         if (pTotal <= 21 && dealer.getTotal() < pTotal) {
             dealAnotherCard(dealer, cards.pop());
