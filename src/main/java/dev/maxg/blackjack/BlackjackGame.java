@@ -41,7 +41,7 @@ public class BlackjackGame {
     }
 
     public Player makePlayer(String name) {
-        return new Player("name", new Card[]{cards.pop(), cards.pop()});
+        return new Player(name, new Card[]{cards.pop(), cards.pop()});
     }
 
     public void autoPlay(Player dealer, Player player) {

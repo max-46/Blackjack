@@ -23,6 +23,10 @@ public class Player {
         this.cards = new ArrayList<>(Arrays.asList(cards));
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Card[] getCards() {
         return cards.toArray(new Card[cards.size()]);
     }

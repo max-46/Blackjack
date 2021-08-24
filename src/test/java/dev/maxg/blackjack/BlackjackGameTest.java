@@ -98,4 +98,15 @@ public class BlackjackGameTest {
         assertEquals(3, player.getCards().length);
     }
     
+    /**
+     * Test of makePlayer method, of class BlackjackGame.
+     */
+    @Test
+    public void testmakePlayer() {
+        System.out.println("makePlayer");
+        BlackjackGame bg = new BlackjackGame(1);
+        Player player = bg.makePlayer("Player 1");
+        assertEquals("Player 1", player.getName());
+    }
+    
 }
