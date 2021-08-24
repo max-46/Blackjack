@@ -5,6 +5,8 @@
  */
 package dev.maxg.blackjack;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -102,16 +104,16 @@ public class BlackjackGameTest {
     }
     
     /**
-     * Test of testHitOrStay method, of class BlackjackGame.
+     * Test of testMain method, of class BlackjackGame.
      */
     @Test
-    public void testHitOrStay() {
-        System.out.println("testHitOrStay");
-        BlackjackGame bg = new BlackjackGame(1);
-        bg.hitOrStay("N");
-        assertEquals(2, bg.getPlayer().getCards().length);
-        bg.hitOrStay("y");
-        assertEquals(3, bg.getPlayer().getCards().length);
-        
+    public void testMain() {
+        System.out.println("testMain");
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));  
+        BlackjackGame.main(new String[]{"test"});
+        assertEquals("Player{name=", outputStreamCaptor.toString().trim().substring(0, 12),
+                "The winning player name should be displayed.");
+        System.setOut(System.out);
     }
 }

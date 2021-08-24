@@ -28,7 +28,18 @@ public class BlackjackGame {
         BlackjackGame bg = new BlackjackGame(3);
         System.out.println(bg.getDealer());
         if (bg.playerHasGoneBust()) System.out.println("You have gone bust!");
-        bg.hitOrStay(null);
+        String response;
+        Scanner scanner = new Scanner(System.in);
+        Player p = bg.getPlayer();
+        while (p.getTotal() <= 21) {
+            System.out.println(p);
+            System.out.println("Would you like another card? (Y/n)");
+            response = (args.length > 0 && args[0].equalsIgnoreCase("test")) ? "N" : scanner.nextLine();
+            if (response.equalsIgnoreCase("N")) {
+                break;
+            }
+            p.giveAnotherCard(bg.cards.pop());
+        }
         bg.dealerPlay();
         System.out.println("The winner is " + bg.getWinner());
     }
@@ -43,20 +54,6 @@ public class BlackjackGame {
     
     public boolean playerHasGoneBust() {
         return player.getTotal() > 21;
-    }
-
-    public void hitOrStay(String key) {
-        String response;
-        Scanner scanner = new Scanner(System.in);
-        while (player.getTotal() <= 21) {
-            System.out.println(player);
-            System.out.println("Would you like another card? (Y/n)");
-            response = key != null ? key : scanner.nextLine();
-            if (response.equalsIgnoreCase("N")) {
-                break;
-            }
-            player.giveAnotherCard(cards.pop());
-        }
     }
 
     public void dealerPlay() {
