@@ -39,22 +39,18 @@ public class BlackjackGameTest {
     }
 
     /**
-     * Test of autoPlay method, of class BlackjackGame.
+     * Test of dealerPlay method, of class BlackjackGame.
      */
     @Test
-    public void testAutoPlay() {
-        System.out.println("autoPlay");
-        Card[] dCards = new Card[]{new Card(CardType.ACE), new Card(CardType.JACK)};
-        Player dealer = new Player("Dealer", dCards);
-        Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
-        Player player = new Player("Dealer", pCards);
+    public void testDealerPlay() {
+        System.out.println("dealerPlay");
         BlackjackGame bg = new BlackjackGame(3);
-        bg.autoPlay(dealer, player);
-        assertTrue(dealer.getTotal() > player.getTotal());
-        bg.dealNewCards(new Player[]{dealer, player}, new Card[] {
+        bg.dealerPlay();
+        assertTrue(bg.getDealer().getTotal() > bg.getPlayer().getTotal());
+        bg.dealNewCards(new Card[]{
             new Card(CardType.TWO), new Card(CardType.QUEEN),
             new Card(CardType.FOUR), new Card(CardType.FIVE)});
-        assertTrue(dealer.getTotal() > player.getTotal());
+        assertTrue(bg.getDealer().getTotal() >= bg.getPlayer().getTotal());
     }
 
     /**
@@ -63,13 +59,12 @@ public class BlackjackGameTest {
     @Test
     public void testDealNewCards() {
         System.out.println("dealNewCards");
-        Card[] dCards = new Card[]{new Card(CardType.ACE), new Card(CardType.JACK)};
-        Player dealer = new Player("Dealer", dCards);
-        Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
-        Player player = new Player("Dealer", pCards);
         BlackjackGame bg = new BlackjackGame(2);
-        bg.dealNewCards(new Player[]{dealer, player}, new Card[]{new Card(CardType.TWO), new Card(CardType.SIX), new Card(CardType.TWO), new Card(CardType.SIX)});
-        assertFalse(Arrays.equals(pCards, player.getCards()));
+        Card[] cards = bg.getPlayer().getCards();
+        bg.dealNewCards(new Card[]{
+            new Card(CardType.THREE), new Card(CardType.SIX),
+            new Card(CardType.NINE), new Card(CardType.QUEEN)});
+        assertFalse(Arrays.equals(cards, bg.getPlayer().getCards()));
     }
 
     /**
@@ -78,39 +73,9 @@ public class BlackjackGameTest {
     @Test
     public void testGetWinner() {
         System.out.println("getWinner");
-        Card[] dCards = new Card[]{new Card(CardType.ACE), new Card(CardType.JACK)};
-        Player dealer = new Player("Dealer", dCards);
-        Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
-        Player player = new Player("Dealer", pCards);
-        Player[] players = new Player[]{dealer, player};
         BlackjackGame bg = new BlackjackGame(3);
-        Player winner = bg.getWinner(players);
+        Player winner = bg.getWinner();
         assertTrue(winner.getTotal() <= 21);
-    }
-
-    /**
-     * Test of dealAnotherCard method, of class BlackjackGame.
-     */
-    @Test
-    public void testDealAnotherCard() {
-        System.out.println("dealAnotherCard");
-        Card[] pCards = new Card[]{new Card(CardType.KING), new Card(CardType.THREE)};
-        Player player = new Player("Dealer", pCards);
-        Card card = new Card(CardType.FOUR);
-        BlackjackGame bg = new BlackjackGame(3);
-        bg.dealAnotherCard(player, card);
-        assertEquals(3, player.getCards().length);
-    }
-    
-    /**
-     * Test of makePlayer method, of class BlackjackGame.
-     */
-    @Test
-    public void testMakePlayer() {
-        System.out.println("makePlayer");
-        BlackjackGame bg = new BlackjackGame(1);
-        Player player = bg.makePlayer("Player 1");
-        assertEquals("Player 1", player.getName());
     }
     
 }
