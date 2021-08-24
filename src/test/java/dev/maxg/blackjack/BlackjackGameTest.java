@@ -87,7 +87,7 @@ public class BlackjackGameTest {
     }
     
     
-        /**
+    /**
      * Test of playerHasGoneBust method, of class BlackjackGame.
      */
     @Test
@@ -98,6 +98,20 @@ public class BlackjackGameTest {
         bg.getPlayer().giveAnotherCard(new Card(CardType.KING));
         bg.getPlayer().giveAnotherCard(new Card(CardType.KING));
         assertTrue(bg.playerHasGoneBust());
+        
+    }
+    
+    /**
+     * Test of testHitOrStay method, of class BlackjackGame.
+     */
+    @Test
+    public void testHitOrStay() {
+        System.out.println("testHitOrStay");
+        BlackjackGame bg = new BlackjackGame(1);
+        bg.hitOrStay("N");
+        assertEquals(2, bg.getPlayer().getCards().length);
+        bg.hitOrStay("y");
+        assertEquals(3, bg.getPlayer().getCards().length);
         
     }
 }

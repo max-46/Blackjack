@@ -28,7 +28,7 @@ public class BlackjackGame {
         BlackjackGame bg = new BlackjackGame(3);
         System.out.println(bg.getDealer());
         if (bg.playerHasGoneBust()) System.out.println("You have gone bust!");
-        bg.hitOrStay();
+        bg.hitOrStay(null);
         bg.dealerPlay();
         System.out.println("The winner is " + bg.getWinner());
     }
@@ -45,13 +45,13 @@ public class BlackjackGame {
         return player.getTotal() > 21;
     }
 
-    public void hitOrStay() {
+    public void hitOrStay(String key) {
         String response;
         Scanner scanner = new Scanner(System.in);
         while (player.getTotal() <= 21) {
             System.out.println(player);
             System.out.println("Would you like another card? (Y/n)");
-            response = scanner.nextLine();
+            response = key != null ? key : scanner.nextLine();
             if (response.equalsIgnoreCase("N")) {
                 break;
             }
